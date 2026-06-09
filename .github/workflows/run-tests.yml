@@ -55,7 +55,7 @@ jobs:
         with:
           api-level: 30 # API 30 is highly stable for headless CI/CD runs
           target: google_apis
-          arch: aarch64 # THE FIX: Use ARM architecture to match the Apple Silicon host
+          arch: arm64-v8a # THE FIX: Use ARM architecture to match the Apple Silicon host
           profile: pixel_6
           script: |
             echo "Starting Appium Server..."
