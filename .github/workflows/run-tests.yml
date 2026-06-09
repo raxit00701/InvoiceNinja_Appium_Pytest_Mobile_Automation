@@ -1,8 +1,6 @@
 name: Mobile E2E Automation
-
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 on:
   workflow_dispatch:
     inputs:
@@ -24,8 +22,9 @@ on:
 jobs:
   run-appium-tests:
     name: Run Pytest Suite
-    runs-on: macos-14 # Fast Apple Silicon (M1/M2) runners
-
+    runs-on: macos-15  # FIX 1: macos-15 runners provide full HVF support for arm64 emulators.
+                       # macos-14 (M1) lacks HVF for nested QEMU, causing:
+                       # "HVF error: HV_UNSUPPORTED / failed to initialize HVF: Invalid argument"
     steps:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
@@ -33,18 +32,19 @@ jobs:
       - name: 🐍 Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.14'
+          python-version: '3.13'  # FIX 2: Python 3.14 is pre-release/unstable.
+                                   # Use 3.13 (latest stable) to avoid missing packages.
 
       - name: 📦 Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt 
+          pip install -r requirements.txt
 
       - name: ⚙️ Install Node.js & Appium
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      
+
       - name: 🚀 Install Appium & UIAutomator2 Driver
         run: |
           npm install -g appium
@@ -53,26 +53,46 @@ jobs:
       - name: 📱 Boot Emulator & Run Tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 33 # THE FIX: API 30 breaks M1 Hypervisor. API 33 runs flawlessly.
+          api-level: 35      # FIX 3: API 30 breaks HVF on Apple Silicon.
+                              # API 33+ resolves the QEMU crash. Using 35 (latest stable).
           target: google_apis
-          arch: arm64-v8a 
+          arch: arm64-v8a
           profile: pixel_6
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -no-metrics
+          disable-animations: true  # FIX 4: Speeds up tests by disabling UI animations on the emulator.
           script: |
-            echo "Starting Appium Server..."
-            appium --relaxed-security & 
-            sleep 10 
-            
-            echo "Appium is running. Forcing Emulator into Root Mode..."
+            echo "--- Emulator is booted. Starting Appium Server..."
+            appium --relaxed-security --log-level error &
+            APPIUM_PID=$!
+            sleep 10
+
+            echo "--- Verifying Appium is running on PID $APPIUM_PID..."
+            if ! kill -0 $APPIUM_PID 2>/dev/null; then
+              echo "ERROR: Appium failed to start."
+              exit 1
+            fi
+
+            echo "--- Forcing emulator into root mode..."
             adb root
             sleep 3
+            adb wait-for-device  # FIX 5: Ensures adb reconnects cleanly after `adb root` restarts the daemon.
 
-            echo "Executing Pytest Suite..."
+            echo "--- Executing Pytest Suite..."
             if [ -z "${{ github.event.inputs.groups }}" ]; then
               echo "No markers provided. Running ALL tests against '${{ github.event.inputs.env }}'..."
-              pytest tests/ --ignore=tests/test_db.py --env=${{ github.event.inputs.env }} --alluredir=reports/allure-results -s --disable-warnings
+              pytest tests/ \
+                --ignore=tests/test_db.py \
+                --env=${{ github.event.inputs.env }} \
+                --alluredir=reports/allure-results \
+                -s --disable-warnings
             else
               echo "Running '${{ github.event.inputs.groups }}' tests against '${{ github.event.inputs.env }}'..."
-              pytest tests/ --ignore=tests/test_db.py -m "${{ github.event.inputs.groups }}" --env=${{ github.event.inputs.env }} --alluredir=reports/allure-results -s --disable-warnings
+              pytest tests/ \
+                --ignore=tests/test_db.py \
+                -m "${{ github.event.inputs.groups }}" \
+                --env=${{ github.event.inputs.env }} \
+                --alluredir=reports/allure-results \
+                -s --disable-warnings
             fi
 
       - name: 📊 Upload Allure Results
