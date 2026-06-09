@@ -267,13 +267,13 @@ assert result["image_url"] == product["image_url"]
 
 ### 🎥 Framework Execution Demo
 
-<img src="https://github.com/raxit00701/InvoiceNinja_Appium_Pytest_Mobile_Automation/blob/2cc5f0f17aa44e826b1e6284fc09cb55b4a1f770/My%20Video.mp4" 
-     alt="Appium Test Execution" 
-     width="250" 
-     style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://raw.githubusercontent.com/raxit00701/InvoiceNinja_Appium_Pytest_Mobile_Automation/d6844d76dcfb14f046f5f0ee8de5aaa3e444a39e/My%20Video.gif" 
+     alt="Invoice Ninja Mobile Automation Execution Demo" 
+     width="950">
 
 </div>
-```
+
+
 ## ALLURE REPORT RESULTS
 
 <div align="center">
