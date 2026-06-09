@@ -24,7 +24,7 @@
 &nbsp;
 ![Tests](https://img.shields.io/badge/Test%20Cases-14-9933FF?style=for-the-badge)
 &nbsp;
-![License](https://img.shields.io/badge/License-MIT-D90429?style=for-the-badge)
+
 
 <br/><br/>
 
