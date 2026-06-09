@@ -2,15 +2,15 @@
 
 <div align="center">
 
-![Python](https://img.shields.io/badge/Python-3.14.4-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Appium](https://img.shields.io/badge/Appium-2.x-662D91?style=for-the-badge&logo=appium&logoColor=white)
-![Pytest](https://img.shields.io/badge/Pytest-8.2.0-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white)
-![Allure](https://img.shields.io/badge/Allure-Report-orange?style=for-the-badge&logo=databricks&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-DB%20Validation-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-![Jenkins](https://img.shields.io/badge/Jenkins-CI%2FCD-D24939?style=for-the-badge&logo=jenkins&logoColor=white)
-![Android](https://img.shields.io/badge/Android-Mobile-3DDC84?style=for-the-badge&logo=android&logoColor=white)
-![Tests](https://img.shields.io/badge/Test%20Cases-14-brightgreen?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+![Python](https://img.shields.io/badge/Python-3.14.4-FF3B30?style=for-the-badge&logo=python&logoColor=white)
+![Appium](https://img.shields.io/badge/Appium-2.x-AF52DE?style=for-the-badge&logo=appium&logoColor=white)
+![Pytest](https://img.shields.io/badge/Pytest-8.2.0-FF9500?style=for-the-badge&logo=pytest&logoColor=white)
+![Allure](https://img.shields.io/badge/Allure-Report-E0245E?style=for-the-badge&logo=databricks&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-DB%20Validation-5856D6?style=for-the-badge&logo=mysql&logoColor=white)
+![Jenkins](https://img.shields.io/badge/Jenkins-CI%2FCD-FF2D55?style=for-the-badge&logo=jenkins&logoColor=white)
+![Android](https://img.shields.io/badge/Android-Mobile-FF8C00?style=for-the-badge&logo=android&logoColor=white)
+![Tests](https://img.shields.io/badge/Test%20Cases-14-9933FF?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-D90429?style=for-the-badge)
 
 **A production-grade, end-to-end mobile test automation framework for the Invoice Ninja Android app — featuring UI automation, live MySQL database validation, video recording, Allure reporting, and Jenkins CI/CD integration.**
 
@@ -19,6 +19,7 @@
 <img src="https://raw.githubusercontent.com/your-username/your-repo/main/assets/appium_demo.gif" alt="Appium Test Run Animation" width="250" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 </div>
+
 
 ---
 
