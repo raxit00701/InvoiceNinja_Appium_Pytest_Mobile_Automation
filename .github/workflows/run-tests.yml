@@ -24,7 +24,7 @@ on:
 jobs:
   run-appium-tests:
     name: Run Pytest Suite
-    runs-on: macos-14 # THE FIX: Uses abundant Apple Silicon (M1/M2) runners for instant startup
+    runs-on: macos-14 # Fast Apple Silicon (M1/M2) runners
 
     steps:
       - name: 📥 Checkout Repository
@@ -53,16 +53,13 @@ jobs:
       - name: 📱 Boot Emulator & Run Tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 30 # API 30 is highly stable for headless CI/CD runs
+          api-level: 33 # THE FIX: API 30 breaks M1 Hypervisor. API 33 runs flawlessly.
           target: google_apis
-          arch: arm64-v8a # THE FIX: Use ARM architecture to match the Apple Silicon host
+          arch: arm64-v8a 
           profile: pixel_6
           script: |
             echo "Starting Appium Server..."
-            # Start Appium in the background (&) so the script can continue
             appium --relaxed-security & 
-            
-            # Wait a few seconds to ensure Appium binds to port 4723
             sleep 10 
             
             echo "Appium is running. Forcing Emulator into Root Mode..."
@@ -70,19 +67,16 @@ jobs:
             sleep 3
 
             echo "Executing Pytest Suite..."
-            # If the user left 'groups' blank, run everything without the -m flag
             if [ -z "${{ github.event.inputs.groups }}" ]; then
               echo "No markers provided. Running ALL tests against '${{ github.event.inputs.env }}'..."
               pytest tests/ --ignore=tests/test_db.py --env=${{ github.event.inputs.env }} --alluredir=reports/allure-results -s --disable-warnings
-            
-            # Otherwise, inject the specific marker they requested
             else
               echo "Running '${{ github.event.inputs.groups }}' tests against '${{ github.event.inputs.env }}'..."
               pytest tests/ --ignore=tests/test_db.py -m "${{ github.event.inputs.groups }}" --env=${{ github.event.inputs.env }} --alluredir=reports/allure-results -s --disable-warnings
             fi
 
       - name: 📊 Upload Allure Results
-        if: always() # Ensures results are saved even if tests fail
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-raw-results
