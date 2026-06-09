@@ -1,8 +1,0 @@
-2026-05-28 10:23:08 [[32mINFO[0m] utils.reset_manager - Restarting app: com.invoiceninja.app
-2026-05-28 10:23:11 [[32mINFO[0m] utils.reset_manager - Waiting up to 30s for app to load...
-2026-05-28 10:23:12 [[32mINFO[0m] utils.reset_manager - App is ready.
-2026-05-28 10:23:12 [[32mINFO[0m] utils.reset_manager - Waiting 5s for app stabilization...
-2026-05-28 10:23:17 [[32mINFO[0m] utils.reset_manager - App stabilization completed.
-2026-05-28 10:23:18 [[32mINFO[0m] utils.reporting_utils - Screen recording started.
-2026-05-28 10:24:44 [[32mINFO[0m] conftest - Test failed — saving video: test_create_task_and_db_validation[task0]
-2026-05-28 10:24:45 [[32mINFO[0m] utils.reporting_utils - Video saved: C:\Users\raxit\IdeaProjects\Invoice_ninja_appium_pytest\utils\..\reports\videos\test_create_task_and_db_validation[task0]_20260528_102444.mp4

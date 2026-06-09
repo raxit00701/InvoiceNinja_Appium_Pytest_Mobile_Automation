@@ -1,6 +1,0 @@
-2026-05-27 09:34:26 [[32mINFO[0m] utils.reset_manager - Restarting app: com.invoiceninja.app
-2026-05-27 09:34:27 [[32mINFO[0m] utils.reset_manager - Waiting up to 30s for app to load...
-2026-05-27 09:34:27 [[32mINFO[0m] utils.reset_manager - App is ready.
-2026-05-27 09:34:28 [[32mINFO[0m] utils.reporting_utils - Screen recording started.
-2026-05-27 09:35:59 [[32mINFO[0m] conftest - Test failed — saving video: test_create_vendor_and_db_validation[vendor0]
-2026-05-27 09:36:00 [[32mINFO[0m] utils.reporting_utils - Video saved: C:\Users\raxit\IdeaProjects\Invoice_ninja_appium_pytest\utils\..\reports\videos\test_create_vendor_and_db_validation[vendor0]_20260527_093559.mp4
