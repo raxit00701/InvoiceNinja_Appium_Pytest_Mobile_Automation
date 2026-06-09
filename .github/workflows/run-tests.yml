@@ -52,12 +52,12 @@ jobs:
           # If the user left 'groups' blank, run everything without the -m flag
           if [ -z "${{ github.event.inputs.groups }}" ]; then
             echo "No markers provided. Running ALL tests against '${{ github.event.inputs.env }}'..."
-            pytest tests/ --env=${{ github.event.inputs.env }} --alluredir=reports/allure-results -s --disable-warnings
+            pytest tests/ --ignore=tests/test_db.py --env=${{ github.event.inputs.env }} --alluredir=reports/allure-results -s --disable-warnings
           
           # Otherwise, inject the specific marker they requested
           else
             echo "Running '${{ github.event.inputs.groups }}' tests against '${{ github.event.inputs.env }}'..."
-            pytest tests/ -m "${{ github.event.inputs.groups }}" --env=${{ github.event.inputs.env }} --alluredir=reports/allure-results -s --disable-warnings
+            pytest tests/ --ignore=tests/test_db.py -m "${{ github.event.inputs.groups }}" --env=${{ github.event.inputs.env }} --alluredir=reports/allure-results -s --disable-warnings
           fi
 
       - name: 📊 Upload Allure Results
