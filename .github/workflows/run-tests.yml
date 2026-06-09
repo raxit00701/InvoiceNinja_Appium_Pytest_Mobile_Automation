@@ -24,7 +24,7 @@ on:
 jobs:
   run-appium-tests:
     name: Run Pytest Suite
-    runs-on: macos-latest # Required for stable Android Emulator Hardware Acceleration
+    runs-on: macos-13 # THE FIX: Forces GitHub to use an Intel-based Mac to match our x86_64 Emulator
 
     steps:
       - name: 📥 Checkout Repository
