@@ -24,7 +24,7 @@ on:
 jobs:
   run-appium-tests:
     name: Run Pytest Suite
-    runs-on: macos-13 # THE FIX: Forces GitHub to use an Intel-based Mac to match our x86_64 Emulator
+    runs-on: macos-14 # THE FIX: Uses abundant Apple Silicon (M1/M2) runners for instant startup
 
     steps:
       - name: 📥 Checkout Repository
@@ -55,7 +55,7 @@ jobs:
         with:
           api-level: 30 # API 30 is highly stable for headless CI/CD runs
           target: google_apis
-          arch: x86_64
+          arch: aarch64 # THE FIX: Use ARM architecture to match the Apple Silicon host
           profile: pixel_6
           script: |
             echo "Starting Appium Server..."
