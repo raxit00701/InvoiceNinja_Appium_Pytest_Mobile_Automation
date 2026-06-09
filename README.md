@@ -262,6 +262,18 @@ assert float(result["price"]) == float(product["price"])
 assert int(result["max_quantity"]) == int(product["max_quantity"])
 assert result["image_url"] == product["image_url"]
 ```
+
+<div align="center">
+
+### 🎥 Framework Execution Demo
+
+<img src="https://raw.githubusercontent.com/raxit00701/InvoiceNinja_Appium_Pytest_Mobile_Automation/580967c07b2068594ae45c52852c775d3f2e8367/My%20Video.gif" 
+     alt="Appium Test Execution" 
+     width="250" 
+     style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+
+</div>
+```
 ## ALLURE REPORT RESULTS
 
 <div align="center">
