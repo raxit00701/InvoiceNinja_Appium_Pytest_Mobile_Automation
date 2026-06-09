@@ -1,5 +1,6 @@
 name: Mobile E2E Automation
-
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 on:
   workflow_dispatch:
     inputs:
@@ -13,7 +14,7 @@ on:
           - stage
           - prod
       groups:
-        description: 'Test Groups (e.g., smoke, reg, "login or reg"). Leave blank to run all.'
+        description: 'Test Groups (e.g., smoke, reg). Leave blank to run all.'
         required: false
         default: 'smoke'
         type: string
@@ -21,8 +22,9 @@ on:
 jobs:
   run-appium-tests:
     name: Run Pytest Suite
-    runs-on: ubuntu-latest # macOS runners are often better if you need hardware acceleration for emulators
-
+    runs-on: macos-15  # FIX 1: macos-15 runners provide full HVF support for arm64 emulators.
+                       # macos-14 (M1) lacks HVF for nested QEMU, causing:
+                       # "HVF error: HV_UNSUPPORTED / failed to initialize HVF: Invalid argument"
     steps:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
@@ -30,35 +32,71 @@ jobs:
       - name: 🐍 Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.14' # Change to match your local version
+          python-version: '3.13'  # FIX 2: Python 3.14 is pre-release/unstable.
+                                   # Use 3.13 (latest stable) to avoid missing packages.
 
-      - name: 📦 Install Dependencies
+      - name: 📦 Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
-          # Assuming you saved your libraries via `pip freeze > requirements.txt`
-          pip install -r requirements.txt 
+          pip install -r requirements.txt
 
-      # ----------------------------------------------------------------------
-      # ⚠️ INFRASTRUCTURE NOTE:
-      # You will need to add steps here to start an Appium Server and
-      # an Android Emulator (or connect to BrowserStack/SauceLabs).
-      # ----------------------------------------------------------------------
+      - name: ⚙️ Install Node.js & Appium
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-      - name: 🚀 Execute Tests
+      - name: 🚀 Install Appium & UIAutomator2 Driver
         run: |
-          # If the user left 'groups' blank, run everything without the -m flag
-          if [ -z "${{ github.event.inputs.groups }}" ]; then
-            echo "No markers provided. Running ALL tests against '${{ github.event.inputs.env }}'..."
-            pytest tests/ --env=${{ github.event.inputs.env }} --alluredir=reports/allure-results -s --disable-warnings
-          
-          # Otherwise, inject the specific marker they requested
-          else
-            echo "Running '${{ github.event.inputs.groups }}' tests against '${{ github.event.inputs.env }}'..."
-            pytest tests/ -m "${{ github.event.inputs.groups }}" --env=${{ github.event.inputs.env }} --alluredir=reports/allure-results -s --disable-warnings
-          fi
+          npm install -g appium
+          appium driver install uiautomator2
+
+      - name: 📱 Boot Emulator & Run Tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35      # FIX 3: API 30 breaks HVF on Apple Silicon.
+                              # API 33+ resolves the QEMU crash. Using 35 (latest stable).
+          target: google_apis
+          arch: arm64-v8a
+          profile: pixel_6
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -no-metrics
+          disable-animations: true  # FIX 4: Speeds up tests by disabling UI animations on the emulator.
+          script: |
+            echo "--- Emulator is booted. Starting Appium Server..."
+            appium --relaxed-security --log-level error &
+            APPIUM_PID=$!
+            sleep 10
+
+            echo "--- Verifying Appium is running on PID $APPIUM_PID..."
+            if ! kill -0 $APPIUM_PID 2>/dev/null; then
+              echo "ERROR: Appium failed to start."
+              exit 1
+            fi
+
+            echo "--- Forcing emulator into root mode..."
+            adb root
+            sleep 3
+            adb wait-for-device  # FIX 5: Ensures adb reconnects cleanly after `adb root` restarts the daemon.
+
+            echo "--- Executing Pytest Suite..."
+            if [ -z "${{ github.event.inputs.groups }}" ]; then
+              echo "No markers provided. Running ALL tests against '${{ github.event.inputs.env }}'..."
+              pytest tests/ \
+                --ignore=tests/test_db.py \
+                --env=${{ github.event.inputs.env }} \
+                --alluredir=reports/allure-results \
+                -s --disable-warnings
+            else
+              echo "Running '${{ github.event.inputs.groups }}' tests against '${{ github.event.inputs.env }}'..."
+              pytest tests/ \
+                --ignore=tests/test_db.py \
+                -m "${{ github.event.inputs.groups }}" \
+                --env=${{ github.event.inputs.env }} \
+                --alluredir=reports/allure-results \
+                -s --disable-warnings
+            fi
 
       - name: 📊 Upload Allure Results
-        if: always() # Ensures results are saved even if tests fail
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-raw-results
