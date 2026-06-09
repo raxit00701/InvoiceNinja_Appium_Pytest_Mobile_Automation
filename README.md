@@ -24,7 +24,7 @@
 &nbsp;
 ![Android](https://img.shields.io/badge/Android-Mobile-FF8C00?style=for-the-badge&logo=android&logoColor=white)
 &nbsp;
-![Tests](https://img.shields.io/badge/Test%20Cases-14-9933FF?style=for-the-badge)
+![Tests](https://img.shields.io/badge/E2E_Test%20Cases-14-9933FF?style=for-the-badge)
 &nbsp;
 
 
@@ -65,7 +65,7 @@ This framework automates the full functional lifecycle of the **Invoice Ninja** 
 
 ### Key Highlights
 
-- ✅ **14 test cases** across all major Invoice Ninja modules
+- ✅ **14 E2E test cases** across all major Invoice Ninja modules
 - 🗄️ **Deep database validation** — not just UI assertions, but record-level SQL verification after every create/update operation
 - 🎥 **Video recording** on test failure for fast root-cause analysis
 - 📸 **Automatic screenshots** captured on any failing test
