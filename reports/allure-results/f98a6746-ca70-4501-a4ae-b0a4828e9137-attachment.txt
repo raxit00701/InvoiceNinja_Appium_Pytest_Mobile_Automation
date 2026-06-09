@@ -1,9 +1,0 @@
-2026-05-28 11:05:38 [[32mINFO[0m] utils.reset_manager - Restarting app: com.invoiceninja.app
-2026-05-28 11:05:42 [[32mINFO[0m] utils.reset_manager - Waiting up to 30s for app to load...
-2026-05-28 11:05:42 [[32mINFO[0m] utils.reset_manager - App is ready.
-2026-05-28 11:05:42 [[32mINFO[0m] utils.reset_manager - Waiting 5s for app stabilization...
-2026-05-28 11:05:47 [[32mINFO[0m] utils.reset_manager - App stabilization completed.
-2026-05-28 11:05:48 [[32mINFO[0m] utils.reporting_utils - Screen recording started.
-2026-05-28 11:07:28 [[32mINFO[0m] utils.db_utils - Disconnected from database.
-2026-05-28 11:07:29 [[32mINFO[0m] utils.driver_factory - Driver session terminated.
-2026-05-28 11:07:29 [[32mINFO[0m] conftest - Driver session terminated.

@@ -1,5 +1,0 @@
-2026-06-09 12:15:39 [[32mINFO[0m] conftest - Loading config: C:\Users\raxit\IdeaProjects\Invoice_ninja_appium_pytest\config\env\test.json
-2026-06-09 12:15:39 [[32mINFO[0m] utils.reporting_utils - Logging initialized: C:\Users\raxit\IdeaProjects\Invoice_ninja_appium_pytest\utils\..\reports\logs\test_20260609_121539.log
-2026-06-09 12:15:39 [[32mINFO[0m] utils.driver_factory - Connecting to Appium server: http://localhost:4723
-2026-06-09 12:15:45 [[32mINFO[0m] conftest - App loaded successfully.
-2026-06-09 12:15:45 [[32mINFO[0m] utils.db_utils - Connected to database.

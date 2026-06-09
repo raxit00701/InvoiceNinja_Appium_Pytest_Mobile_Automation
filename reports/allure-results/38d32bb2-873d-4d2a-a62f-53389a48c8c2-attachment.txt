@@ -1,8 +1,0 @@
-2026-05-27 09:37:43 [[32mINFO[0m] utils.reset_manager - Restarting app: com.invoiceninja.app
-2026-05-27 09:37:45 [[32mINFO[0m] utils.reset_manager - Waiting up to 30s for app to load...
-2026-05-27 09:37:50 [[32mINFO[0m] utils.reset_manager - App is ready.
-2026-05-27 09:37:51 [[32mINFO[0m] utils.reporting_utils - Screen recording started.
-2026-05-27 09:39:42 [[32mINFO[0m] conftest - Test failed — saving video: test_create_quote_and_db_validation[quote0]
-2026-05-27 09:39:43 [[32mINFO[0m] utils.reporting_utils - Video saved: C:\Users\raxit\IdeaProjects\Invoice_ninja_appium_pytest\utils\..\reports\videos\test_create_quote_and_db_validation[quote0]_20260527_093942.mp4
-2026-05-27 09:39:43 [[32mINFO[0m] utils.db_utils - Disconnected from database.
-2026-05-27 09:39:44 [[32mINFO[0m] utils.driver_factory - Driver session terminated.

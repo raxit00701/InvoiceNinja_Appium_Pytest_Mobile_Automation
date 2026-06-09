@@ -1,4 +1,0 @@
-2026-06-04 00:38:57 [[32mINFO[0m] mysql.connector - package: mysql.connector.plugins
-2026-06-04 00:38:57 [[32mINFO[0m] mysql.connector - plugin_name: caching_sha2_password
-2026-06-04 00:38:57 [[32mINFO[0m] mysql.connector - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
-2026-06-04 00:38:57 [[32mINFO[0m] utils.db_utils - Connected to database.
