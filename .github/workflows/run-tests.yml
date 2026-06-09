@@ -1,0 +1,66 @@
+name: Mobile E2E Automation
+
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: 'Target Environment'
+        required: true
+        default: 'test'
+        type: choice
+        options:
+          - test
+          - stage
+          - prod
+      groups:
+        description: 'Test Groups (e.g., smoke, reg, "login or reg"). Leave blank to run all.'
+        required: false
+        default: 'smoke'
+        type: string
+
+jobs:
+  run-appium-tests:
+    name: Run Pytest Suite
+    runs-on: ubuntu-latest # macOS runners are often better if you need hardware acceleration for emulators
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14' # Change to match your local version
+
+      - name: 📦 Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # Assuming you saved your libraries via `pip freeze > requirements.txt`
+          pip install -r requirements.txt 
+
+      # ----------------------------------------------------------------------
+      # ⚠️ INFRASTRUCTURE NOTE:
+      # You will need to add steps here to start an Appium Server and
+      # an Android Emulator (or connect to BrowserStack/SauceLabs).
+      # ----------------------------------------------------------------------
+
+      - name: 🚀 Execute Tests
+        run: |
+          # If the user left 'groups' blank, run everything without the -m flag
+          if [ -z "${{ github.event.inputs.groups }}" ]; then
+            echo "No markers provided. Running ALL tests against '${{ github.event.inputs.env }}'..."
+            pytest tests/ --env=${{ github.event.inputs.env }} --alluredir=reports/allure-results -s --disable-warnings
+          
+          # Otherwise, inject the specific marker they requested
+          else
+            echo "Running '${{ github.event.inputs.groups }}' tests against '${{ github.event.inputs.env }}'..."
+            pytest tests/ -m "${{ github.event.inputs.groups }}" --env=${{ github.event.inputs.env }} --alluredir=reports/allure-results -s --disable-warnings
+          fi
+
+      - name: 📊 Upload Allure Results
+        if: always() # Ensures results are saved even if tests fail
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-raw-results
+          path: reports/allure-results
+          retention-days: 7
