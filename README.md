@@ -14,6 +14,10 @@
 
 **A production-grade, end-to-end mobile test automation framework for the Invoice Ninja Android app — featuring UI automation, live MySQL database validation, video recording, Allure reporting, and Jenkins CI/CD integration.**
 
+<br>
+
+<img src="https://raw.githubusercontent.com/your-username/your-repo/main/assets/appium_demo.gif" alt="Appium Test Run Animation" width="250" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+
 </div>
 
 ---
