@@ -1,16 +1,32 @@
-# 📱 Invoice Ninja — Appium Mobile Automation Suite
-
 <div align="center">
 
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:662D91,50:D90429,100:FF8C00&height=210&section=header&text=📱%20INVOICE%20NINJA&fontSize=52&fontColor=ffffff&fontAlignY=38&fontAlign=50&desc=Appium%20Mobile%20Automation%20Suite&descAlignY=62&descSize=18&descColor=FAD2E1&animation=fadeIn" width="100%"/>
+
+<br/>
+
+<!-- BADGE ROW 1 — CORE STACK -->
 ![Python](https://img.shields.io/badge/Python-3.14.4-FF3B30?style=for-the-badge&logo=python&logoColor=white)
+&nbsp;
 ![Appium](https://img.shields.io/badge/Appium-2.x-AF52DE?style=for-the-badge&logo=appium&logoColor=white)
+&nbsp;
 ![Pytest](https://img.shields.io/badge/Pytest-8.2.0-FF9500?style=for-the-badge&logo=pytest&logoColor=white)
+&nbsp;
 ![Allure](https://img.shields.io/badge/Allure-Report-E0245E?style=for-the-badge&logo=databricks&logoColor=white)
+&nbsp;
 ![MySQL](https://img.shields.io/badge/MySQL-DB%20Validation-5856D6?style=for-the-badge&logo=mysql&logoColor=white)
+
+<br/>
+
+<!-- BADGE ROW 2 — CI/CD & ENVIRONMENT -->
 ![Jenkins](https://img.shields.io/badge/Jenkins-CI%2FCD-FF2D55?style=for-the-badge&logo=jenkins&logoColor=white)
+&nbsp;
 ![Android](https://img.shields.io/badge/Android-Mobile-FF8C00?style=for-the-badge&logo=android&logoColor=white)
+&nbsp;
 ![Tests](https://img.shields.io/badge/Test%20Cases-14-9933FF?style=for-the-badge)
+&nbsp;
 ![License](https://img.shields.io/badge/License-MIT-D90429?style=for-the-badge)
+
+<br/><br/>
 
 **A production-grade, end-to-end mobile test automation framework for the Invoice Ninja Android app — featuring UI automation, live MySQL database validation, video recording, Allure reporting, and Jenkins CI/CD integration.**
 
