@@ -12,6 +12,7 @@ with open("data/purchase_order_data.json") as f:
 
 
 @pytest.mark.order(10)
+@pytest.mark.reg
 @allure.feature("Purchase Orders")
 @allure.story("Create Purchase Order")
 class TestPurchaseOrder:

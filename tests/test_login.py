@@ -20,6 +20,7 @@ class TestLogin:
     # Priority Marker
     @pytest.mark.order(1)
     @pytest.mark.reset_app
+    @pytest.mark.login
     @pytest.mark.parametrize("login", test_data["login"])
     def test_login(self, driver, login):
 

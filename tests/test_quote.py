@@ -16,6 +16,7 @@ with open("data/quote_data.json") as f:
 
 
 @pytest.mark.order(7)
+@pytest.mark.smoke
 @allure.feature("Quotes")
 @allure.story("Create Quote")
 class TestQuote:

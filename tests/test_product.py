@@ -35,6 +35,7 @@ product_data = {
 
 
 @pytest.mark.order(3)
+@pytest.mark.smoke
 @allure.feature("Products")
 @allure.story("Create Product")
 class TestClient:

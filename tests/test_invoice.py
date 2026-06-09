@@ -12,6 +12,7 @@ with open("data/invoice_data.json") as f:
 
 
 @pytest.mark.order(12)
+@pytest.mark.reg
 @allure.feature("Invoices")
 @allure.story("Create Invoice")
 class TestInvoice:

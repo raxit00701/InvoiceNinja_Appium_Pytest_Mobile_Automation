@@ -15,6 +15,7 @@ with open("data/payment_data.json") as f:
 @allure.story("Create Payment")
 class TestPayment:
     @pytest.mark.order(13)
+    @pytest.mark.reg
     @allure.title("Create payment and validate in database")
     @allure.description("Validate payment creation flow and database validation")
     @allure.severity(allure.severity_level.CRITICAL)

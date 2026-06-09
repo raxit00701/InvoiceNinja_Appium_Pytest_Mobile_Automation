@@ -12,6 +12,7 @@ with open("data/recurring_invoice_data.json") as f:
 
 
 @pytest.mark.order(11)
+@pytest.mark.reg
 @allure.feature("Recurring Invoices")
 @allure.story("Create Recurring Invoice")
 class TestRecurringInvoice:

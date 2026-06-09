@@ -14,6 +14,7 @@ with open("data/recurring_expense_data.json") as f:
 
 
 @pytest.mark.order(9)
+@pytest.mark.reg
 @allure.feature("Recurring Expense")
 @allure.story("Create Recurring Expense")
 class TestRecurringExpense:

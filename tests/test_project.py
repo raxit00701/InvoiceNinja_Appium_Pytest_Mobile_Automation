@@ -13,6 +13,7 @@ with open("data/project_data.json") as f:
 
 @pytest.mark.order(4)
 @allure.feature("Project")
+@pytest.mark.smoke
 @allure.story("Create Project")
 class TestClient:
     @allure.title("Create Project and validate in database")

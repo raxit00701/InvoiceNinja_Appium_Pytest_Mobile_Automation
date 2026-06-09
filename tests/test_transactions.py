@@ -12,6 +12,7 @@ with open("data/transaction_data.json") as f:
 
 
 @pytest.mark.order(14)
+@pytest.mark.reg
 @allure.feature("Transactions")
 @allure.story("Create Transaction")
 class TestTransaction:

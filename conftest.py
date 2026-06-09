@@ -2,6 +2,7 @@ import os
 import pytest
 import allure
 import logging
+import shutil
 
 from appium.webdriver.common.appiumby import AppiumBy
 
@@ -330,3 +331,65 @@ def pytest_runtest_makereport(
             except Exception as e:
 
                 logger.warning(f"Screenshot failed: {e}")
+
+
+@pytest.hookimpl(tryfirst=True)
+def pytest_sessionstart(session):
+    """
+    Save history, clean allure-results, and restore history.
+    """
+    allure_dir = session.config.getoption("--alluredir")
+    report_dir = "reports/allure-report"  # Where the permanent report is generated
+    history_src = os.path.join(report_dir, "history")
+    history_dst = os.path.join(allure_dir, "history")
+
+    # 1. If a previous report exists, copy its history to the results folder
+    if os.path.exists(history_src):
+        logger.info(f"Preserving Allure history from {history_src}")
+        os.makedirs(allure_dir, exist_ok=True)
+        # Copy history folder to the directory we are about to fill with new results
+        if os.path.exists(history_dst):
+            shutil.rmtree(history_dst)
+        shutil.copytree(history_src, history_dst)
+
+    # 2. Clean allure-results directory (excluding the history folder we just copied)
+    if allure_dir and os.path.exists(allure_dir):
+        logger.info(f"Cleaning existing allure results in: {allure_dir}")
+        for item in os.listdir(allure_dir):
+            item_path = os.path.join(allure_dir, item)
+            if item != "history":  # DO NOT delete the history folder
+                if os.path.isfile(item_path):
+                    os.remove(item_path)
+                elif os.path.isdir(item_path):
+                    shutil.rmtree(item_path)
+
+
+@pytest.hookimpl(tryfirst=True)
+def pytest_sessionfinish(session, exitstatus):
+    """
+    Generate environment.properties file for Allure dashboard.
+    """
+    allure_dir = session.config.getoption("--alluredir")
+
+    if allure_dir and os.path.exists(allure_dir):
+        env = session.config.getoption("--env")
+
+        # Get the set of markers actually used in this session
+        used_markers = set()
+        for item in session.items:
+            used_markers.update(item.keywords.keys())
+
+        # Filter against your target groups
+        target_groups = ["smoke", "reg", "login"]
+        active_groups = [m for m in target_groups if m in used_markers]
+
+        env_properties = [
+            f"Environment = {env}",
+            f"Test_Groups = {', '.join(active_groups) if active_groups else 'None'}",
+        ]
+
+        with open(os.path.join(allure_dir, "environment.properties"), "w") as f:
+            f.write("\n".join(env_properties))
+        logger.info(
+            f"Generated Allure environment.properties for {env} with groups: {active_groups}"
+        )

@@ -85,6 +85,7 @@ with open("data/client_data.json") as f:
 
 @pytest.mark.order(2)
 @allure.feature("Clients")
+@pytest.mark.smoke
 @allure.story("Create Client")
 class TestClient:
     @allure.title("Create client and validate in database")

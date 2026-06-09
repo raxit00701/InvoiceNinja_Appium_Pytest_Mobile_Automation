@@ -13,6 +13,7 @@ with open("data/task_data.json") as f:
 
 
 @pytest.mark.order(6)
+@pytest.mark.smoke
 @allure.feature("Tasks")
 @allure.story("Create Tasks")
 class TestTask:

@@ -65,6 +65,7 @@ with open("data/vendor_data.json") as f:
 
 
 @pytest.mark.order(5)
+@pytest.mark.smoke
 @allure.feature("Vendor")
 @allure.story("Create Vendor")
 class TestClient:

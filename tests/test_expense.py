@@ -13,6 +13,7 @@ with open("data/expense_data.json") as f:
 
 
 @pytest.mark.order(8)
+@pytest.mark.reg
 @allure.feature("Expenses")
 @allure.story("Create Expense")
 class TestExpense:
