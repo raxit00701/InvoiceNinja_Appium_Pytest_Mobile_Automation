@@ -14,6 +14,8 @@
 ![Allure](https://img.shields.io/badge/Allure-Report-E0245E?style=for-the-badge&logo=databricks&logoColor=white)
 &nbsp;
 ![MySQL](https://img.shields.io/badge/MySQL-DB%20Validation-5856D6?style=for-the-badge&logo=mysql&logoColor=white)
+<img src="https://img.shields.io/badge/License-Proprietary%20%C2%A9%202026%20Raxit%20Sharma-B22222?style=for-the-badge&logo=opensourceinitiative&logoColor=white"/>
+
 
 <br/>
 
@@ -589,7 +591,11 @@ Test data is loaded once per session, and each test class reads only its own JSO
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+🛑 PROHIBITED — ALL RIGHTS RESERVED
+This project, including all associated source code, design assets, configurations, and documentation, is strictly proprietary and confidential.
+
+Unauthorized copying, cloning, modification, redistribution, execution, or use of this repository—or any portion thereof—via any medium is strictly prohibited without explicit, prior written authorization from the copyright holder .
+**All Rights Reserved © 2026 Raxit Sharma**
 
 ---
 
