@@ -1,0 +1,1190 @@
+import pytest
+import allure
+import json
+import time
+
+from appium.webdriver.common.appiumby import AppiumBy
+
+
+# Load test data
+with open("data/client_data.json") as f:
+    test_data = json.load(f)
+
+
+@pytest.mark.restart_app
+@allure.feature("Clients")
+@allure.story("Create Client")
+class TestClient:
+
+    @allure.title("Create client and validate in database")
+    @allure.description(
+        "Validate client creation flow and database validation"
+    )
+    @allure.severity(allure.severity_level.CRITICAL)
+    @pytest.mark.parametrize("client", test_data["clients"])
+    def test_create_client_and_db_validation(
+            self,
+            driver,
+            db,
+            client
+    ):
+
+        print("\n========== CLIENT CREATION TEST STARTED ==========\n")
+        print(f"[TEST DATA] {client}")
+
+        # Step 0 - Close the popup
+        with allure.step("Close or back initial popup"):
+
+            print("[UI] Looking for Close button or back button")
+
+            for button in ["CLOSE", "Back"]:
+
+                try:
+
+                    element = driver.find_element(
+                        AppiumBy.ACCESSIBILITY_ID,
+                        button
+                    )
+
+                    if element.is_displayed():
+
+                        element.click()
+
+                        time.sleep(2)
+
+                except Exception:
+                    pass
+
+
+
+        # Step 1 - Open Sidebar
+        with allure.step("Open menu sidebar"):
+
+            print("[UI] Looking for Menu Sidebar")
+
+            sidebar = driver.find_element(
+                AppiumBy.ACCESSIBILITY_ID,
+                "Menu Sidebar"
+            )
+
+            assert sidebar.is_displayed(), \
+                "Menu Sidebar not visible"
+
+            print("[UI] Clicking Menu Sidebar")
+
+            sidebar.click()
+
+            time.sleep(2)
+
+        # Step 2 - Click Clients
+        with allure.step("Open Clients section"):
+
+            print("[UI] Looking for Clients menu")
+
+            clients_menu = driver.find_element(
+                AppiumBy.ACCESSIBILITY_ID,
+                "Clients"
+            )
+
+            assert clients_menu.is_displayed(), \
+                "Clients option not visible"
+
+            print("[UI] Clicking Clients")
+
+            clients_menu.click()
+
+            time.sleep(2)
+
+        # Step 3 - Click New Client
+        with allure.step("Click New Client"):
+
+            print("[UI] Looking for New Client button")
+
+            new_client = driver.find_element(
+                AppiumBy.ACCESSIBILITY_ID,
+                "New Client"
+            )
+
+            assert new_client.is_displayed(), \
+                "New Client button not visible"
+
+            print("[UI] Clicking New Client")
+
+            new_client.click()
+
+            time.sleep(2)
+
+        # Step 4 - Enter Client Name
+        with allure.step("Enter client name"):
+
+            print(f"[UI] Entering Client Name: {client['name']}")
+
+            name_field = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(0)'
+            )
+
+            assert name_field.is_displayed(), \
+                "Client name field not visible"
+
+            name_field.click()
+            name_field.clear()
+            name_field.send_keys(client["name"])
+
+            print("[UI] Client name entered successfully")
+
+            time.sleep(2)
+
+        # Step 5 - Select New User
+        with allure.step("Select New User from dropdown"):
+
+            print("[UI] Opening User dropdown")
+
+            user_dropdown = driver.find_element(
+                AppiumBy.ACCESSIBILITY_ID,
+                "User"
+            )
+
+            assert user_dropdown.is_displayed(), \
+                "User dropdown not visible"
+
+            user_dropdown.click()
+
+            time.sleep(2)
+
+            print("[UI] Looking for New User option")
+
+            new_user = driver.find_element(
+                AppiumBy.ACCESSIBILITY_ID,
+                "New User"
+            )
+
+            assert new_user.is_displayed(), \
+                "New User option not visible"
+
+            print("[UI] Selecting New User")
+
+            new_user.click()
+
+            time.sleep(2)
+
+        # Step 6 - Enter ID Number
+        with allure.step("Enter ID number"):
+
+            print(f"[UI] Entering ID Number: {client['id_number']}")
+
+            id_field = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(1)'
+            )
+
+            assert id_field.is_displayed(), \
+                "ID number field not visible"
+
+            id_field.click()
+            id_field.clear()
+            id_field.send_keys(client["id_number"])
+
+            print("[UI] ID Number entered successfully")
+
+            time.sleep(2)
+
+        # Step 7 - Enter VAT Number
+        with allure.step("Enter VAT number"):
+
+            print(f"[UI] Entering VAT Number: {client['vat_number']}")
+
+            vat_field = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(2)'
+            )
+
+            assert vat_field.is_displayed(), \
+                "VAT number field not visible"
+
+            vat_field.click()
+            vat_field.clear()
+            vat_field.send_keys(client["vat_number"])
+
+            print("[UI] VAT Number entered successfully")
+
+            time.sleep(2)
+
+        # Step 8 - Enter Website
+        with allure.step("Enter website"):
+
+            print(f"[UI] Entering Website: {client['website']}")
+
+            website_field = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(3)'
+            )
+
+            assert website_field.is_displayed(), \
+                "Website field not visible"
+
+            website_field.click()
+            website_field.clear()
+            website_field.send_keys(client["website"])
+
+            print("[UI] Website entered successfully")
+
+            time.sleep(2)
+
+        # Step 9 - Enter Phone Number
+        with allure.step("Enter phone number"):
+
+            print(f"[UI] Entering Phone Number: {client['phone']}")
+
+            phone_field = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(4)'
+            )
+
+            assert phone_field.is_displayed(), \
+                "Phone number field not visible"
+
+            phone_field.click()
+            phone_field.clear()
+            phone_field.send_keys(client["phone"])
+
+            print("[UI] Phone Number entered successfully")
+
+            time.sleep(2)
+
+        # ==================== CONTACTS TAB ====================
+
+        # Step 10 - Navigate to Contacts Tab
+        with allure.step("Navigate to Contacts Tab"):
+
+            print("[UI] Clicking Contacts Tab (Tab 2 of 6)")
+
+            contacts_tab = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().description("Contacts\nTab 2 of 6")'
+            )
+
+            assert contacts_tab.is_displayed(), \
+                "Contacts Tab not visible"
+
+            contacts_tab.click()
+
+            time.sleep(2)
+
+        # Step 11 - Enter First Name
+        with allure.step("Enter contact first name"):
+
+            print(f"[UI] Entering First Name: {client['contacts']['first_name']}")
+
+            first_name_field = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(0)'
+            )
+
+            assert first_name_field.is_displayed(), \
+                "First name field not visible"
+
+            first_name_field.click()
+            first_name_field.clear()
+            first_name_field.send_keys(client["contacts"]["first_name"])
+
+            print("[UI] First name entered successfully")
+
+            time.sleep(1)
+
+        # Step 12 - Enter Last Name
+        with allure.step("Enter contact last name"):
+
+            print(f"[UI] Entering Last Name: {client['contacts']['last_name']}")
+
+            last_name_field = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(1)'
+            )
+
+            assert last_name_field.is_displayed(), \
+                "Last name field not visible"
+
+            last_name_field.click()
+            last_name_field.clear()
+            last_name_field.send_keys(client["contacts"]["last_name"])
+
+            print("[UI] Last name entered successfully")
+
+            time.sleep(1)
+
+        # Step 13 - Enter Contact Email
+        with allure.step("Enter contact email"):
+
+            print(f"[UI] Entering Email: {client['contacts']['email']}")
+
+            email_field = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(2)'
+            )
+
+            assert email_field.is_displayed(), \
+                "Email field not visible"
+
+            email_field.click()
+            email_field.clear()
+            email_field.send_keys(client["contacts"]["email"])
+
+            print("[UI] Email entered successfully")
+
+            time.sleep(1)
+
+        # Step 14 - Enter Contact Phone
+        with allure.step("Enter contact phone"):
+
+            print(f"[UI] Entering Contact Phone: {client['contacts']['phone']}")
+
+            contact_phone_field = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(3)'
+            )
+
+            assert contact_phone_field.is_displayed(), \
+                "Contact phone field not visible"
+
+            contact_phone_field.click()
+            contact_phone_field.clear()
+            contact_phone_field.send_keys(client["contacts"]["phone"])
+
+            print("[UI] Contact phone entered successfully")
+
+            time.sleep(1)
+
+        # Step 15 - Add Second Contact
+        with allure.step("Add second contact"):
+
+            print("[UI] Clicking ADD SECOND CONTACT")
+
+            add_second_contact = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().description("ADD SECOND CONTACT")'
+            )
+
+            assert add_second_contact.is_displayed(), \
+                "ADD SECOND CONTACT button not visible"
+
+            add_second_contact.click()
+
+            print("[UI] Waiting for second contact popup to open")
+
+            time.sleep(2)
+
+        # Step 16 - Enter Second Contact First Name
+        with allure.step("Enter second contact first name"):
+
+            print(f"[UI] Entering Second Contact First Name: {client['contacts']['second_contact']['first_name']}")
+
+            second_first_name_field = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(0)'
+            )
+
+            assert second_first_name_field.is_displayed(), \
+                "Second contact first name field not visible"
+
+            second_first_name_field.click()
+            second_first_name_field.clear()
+            second_first_name_field.send_keys(client["contacts"]["second_contact"]["first_name"])
+
+            print("[UI] Second contact first name entered successfully")
+
+            time.sleep(1)
+
+        # Step 17 - Enter Second Contact Last Name
+        with allure.step("Enter second contact last name"):
+
+            print(f"[UI] Entering Second Contact Last Name: {client['contacts']['second_contact']['last_name']}")
+
+            second_last_name_field = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(1)'
+            )
+
+            assert second_last_name_field.is_displayed(), \
+                "Second contact last name field not visible"
+
+            second_last_name_field.click()
+            second_last_name_field.clear()
+            second_last_name_field.send_keys(client["contacts"]["second_contact"]["last_name"])
+
+            print("[UI] Second contact last name entered successfully")
+
+            time.sleep(1)
+
+        # Step 18 - Enter Second Contact Email
+        with allure.step("Enter second contact email"):
+
+            print(f"[UI] Entering Second Contact Email: {client['contacts']['second_contact']['email']}")
+
+            second_email_field = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(2)'
+            )
+
+            assert second_email_field.is_displayed(), \
+                "Second contact email field not visible"
+
+            second_email_field.click()
+            second_email_field.clear()
+            second_email_field.send_keys(client["contacts"]["second_contact"]["email"])
+
+            print("[UI] Second contact email entered successfully")
+
+            time.sleep(1)
+
+        # Step 19 - Enter Second Contact Phone
+        with allure.step("Enter second contact phone"):
+
+            print(f"[UI] Entering Second Contact Phone: {client['contacts']['second_contact']['phone']}")
+
+            second_phone_field = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(3)'
+            )
+
+            assert second_phone_field.is_displayed(), \
+                "Second contact phone field not visible"
+
+            second_phone_field.click()
+            second_phone_field.clear()
+            second_phone_field.send_keys(client["contacts"]["second_contact"]["phone"])
+
+            print("[UI] Second contact phone entered successfully")
+
+            time.sleep(1)
+
+        # Step 19 - Click DONE
+        with allure.step("Confirm second contact with DONE"):
+
+            print("[UI] Clicking DONE to confirm second contact")
+
+            done_button = driver.find_element(
+                AppiumBy.ACCESSIBILITY_ID,
+                "DONE"
+            )
+
+            assert done_button.is_displayed(), \
+                "DONE button not visible"
+
+            done_button.click()
+
+            time.sleep(2)
+
+        # ==================== NOTES TAB ====================
+
+        # Step 20 - Navigate to Notes Tab
+        with allure.step("Navigate to Notes Tab"):
+
+            print("[UI] Clicking Notes Tab (Tab 3 of 6)")
+
+            notes_tab = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().description("Notes\nTab 3 of 6")'
+            )
+
+            assert notes_tab.is_displayed(), \
+                "Notes Tab not visible"
+
+            notes_tab.click()
+
+            time.sleep(2)
+
+        # Step 21 - Enter Public Notes
+        with allure.step("Enter public notes"):
+
+            print(f"[UI] Entering Public Notes: {client['notes']['public_notes']}")
+
+            public_notes_field = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(0)'
+            )
+
+            assert public_notes_field.is_displayed(), \
+                "Public notes field not visible"
+
+            public_notes_field.click()
+            public_notes_field.clear()
+            public_notes_field.send_keys(client["notes"]["public_notes"])
+
+            print("[UI] Public notes entered successfully")
+
+            time.sleep(1)
+
+        # Step 22 - Enter Private Notes
+        with allure.step("Enter private notes"):
+
+            print(f"[UI] Entering Private Notes: {client['notes']['private_notes']}")
+
+            private_notes_field = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(1)'
+            )
+
+            assert private_notes_field.is_displayed(), \
+                "Private notes field not visible"
+
+            private_notes_field.click()
+            private_notes_field.clear()
+            private_notes_field.send_keys(client["notes"]["private_notes"])
+
+            print("[UI] Private notes entered successfully")
+
+            time.sleep(1)
+
+        # ==================== SETTINGS TAB ====================
+
+        # Step 23 - Navigate to Settings Tab
+        with allure.step("Navigate to Settings Tab"):
+
+            print("[UI] Clicking Settings Tab (Tab 4 of 6)")
+
+            settings_tab = driver.find_element(
+                AppiumBy.XPATH,
+                '//android.view.View[@content-desc="Settings\nTab 4 of 6"]'
+            )
+
+            assert settings_tab.is_displayed(), \
+                "Settings Tab not visible"
+
+            settings_tab.click()
+
+            time.sleep(2)
+
+        # Step 24 - Select Language
+        with allure.step("Select language"):
+
+            print(f"[UI] Opening Language dropdown")
+
+            language_dropdown = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.view.View").instance(22)'
+            )
+
+            assert language_dropdown.is_displayed(), \
+                "Language dropdown not visible"
+
+            language_dropdown.click()
+
+            time.sleep(2)
+
+            print(
+                f"[UI] Scrolling to find language: "
+                f"{client['settings']['language']}"
+            )
+
+            driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                f'new UiScrollable(new UiSelector().scrollable(true))'
+                f'.scrollIntoView('
+                f'new UiSelector().description('
+                f'"{client["settings"]["language"]}"))'
+            )
+
+            language_option = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                f'new UiSelector().description('
+                f'"{client["settings"]["language"]}")'
+            )
+
+            assert language_option.is_displayed(), \
+                f"Language option '{client['settings']['language']}' not visible"
+
+            language_option.click()
+
+            print(
+                f"[UI] Language "
+                f"'{client['settings']['language']}' selected"
+            )
+
+            time.sleep(1)
+
+        # Step 25 - Select Invoice Payment Terms
+        with allure.step("Select Invoice Payment Terms"):
+
+            print(f"[UI] Opening Invoice Payment Terms dropdown")
+
+            payment_terms_dropdown = driver.find_element(
+                AppiumBy.ACCESSIBILITY_ID,
+                "Invoice Payment Terms"
+            )
+
+            assert payment_terms_dropdown.is_displayed(), \
+                "Invoice Payment Terms dropdown not visible"
+
+            payment_terms_dropdown.click()
+
+            time.sleep(2)
+
+            payment_term_option = driver.find_element(
+                AppiumBy.ACCESSIBILITY_ID,
+                client["settings"]["invoice_payment_terms"]
+            )
+
+            assert payment_term_option.is_displayed(), \
+                f"Payment term '{client['settings']['invoice_payment_terms']}' not visible"
+
+            payment_term_option.click()
+
+            print(f"[UI] Invoice Payment Terms set to '{client['settings']['invoice_payment_terms']}'")
+
+            time.sleep(1)
+
+        # Step 26 - Select Quote Valid Until
+        with allure.step("Select Quote Valid Until"):
+
+            print("[UI] Opening Quote Valid Until dropdown")
+
+            quote_valid_dropdown = driver.find_element(
+                AppiumBy.ACCESSIBILITY_ID,
+                "Quote Valid Until"
+            )
+
+            assert quote_valid_dropdown.is_displayed(), \
+                "Quote Valid Until dropdown not visible"
+
+            quote_valid_dropdown.click()
+
+            time.sleep(2)
+
+            quote_valid_option = driver.find_element(
+                AppiumBy.ACCESSIBILITY_ID,
+                client["settings"]["quote_valid_until"]
+            )
+
+            assert quote_valid_option.is_displayed(), \
+                f"Quote Valid Until option '{client['settings']['quote_valid_until']}' not visible"
+
+            quote_valid_option.click()
+
+            print(f"[UI] Quote Valid Until set to '{client['settings']['quote_valid_until']}'")
+
+            time.sleep(1)
+
+        # Step 27 - Select Send Reminders
+        with allure.step("Select Send Reminders setting"):
+
+            print("[UI] Opening Send Reminders dropdown")
+
+            send_reminders_dropdown = driver.find_element(
+                AppiumBy.ACCESSIBILITY_ID,
+                "Send Reminders"
+            )
+
+            assert send_reminders_dropdown.is_displayed(), \
+                "Send Reminders dropdown not visible"
+
+            send_reminders_dropdown.click()
+
+            time.sleep(2)
+
+            reminders_option = driver.find_element(
+                AppiumBy.ACCESSIBILITY_ID,
+                client["settings"]["send_reminders"]
+            )
+
+            assert reminders_option.is_displayed(), \
+                f"Send Reminders option '{client['settings']['send_reminders']}' not visible"
+
+            reminders_option.click()
+
+            print(f"[UI] Send Reminders set to '{client['settings']['send_reminders']}'")
+
+            time.sleep(1)
+
+        # Step 28 - Enter Custom Value
+        with allure.step("Enter custom value"):
+
+            print(f"[UI] Entering Custom Value: {client['settings']['custom_value']}")
+
+            custom_value_field = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText")'
+            )
+
+            assert custom_value_field.is_displayed(), \
+                "Custom value field not visible"
+
+            custom_value_field.click()
+            custom_value_field.clear()
+            custom_value_field.send_keys(client["settings"]["custom_value"])
+
+            print("[UI] Custom value entered successfully")
+
+            time.sleep(1)
+
+        # Step 29 - Select Size
+        with allure.step("Select client size"):
+
+            print(f"[UI] Opening Size dropdown")
+
+            size_dropdown = driver.find_element(
+                AppiumBy.ACCESSIBILITY_ID,
+                "Size"
+            )
+
+            assert size_dropdown.is_displayed(), \
+                "Size dropdown not visible"
+
+            size_dropdown.click()
+
+            time.sleep(2)
+
+            size_option = driver.find_element(
+                AppiumBy.ACCESSIBILITY_ID,
+                client["settings"]["size"]
+            )
+
+            assert size_option.is_displayed(), \
+                f"Size option '{client['settings']['size']}' not visible"
+
+            size_option.click()
+
+            print(f"[UI] Size set to '{client['settings']['size']}'")
+
+            time.sleep(1)
+
+        # ==================== BILLING ADDRESS TAB ====================
+
+        # Step 30 - Navigate to Billing Address Tab
+        with allure.step("Navigate to Billing Address Tab"):
+
+            print("[UI] Clicking Billing Address Tab (Tab 5 of 6)")
+
+            billing_tab = driver.find_element(
+                AppiumBy.XPATH,
+                '//android.view.View[@content-desc="Billing Address\nTab 5 of 6"]'
+            )
+
+            assert billing_tab.is_displayed(), \
+                "Billing Address Tab not visible"
+
+            billing_tab.click()
+
+            time.sleep(2)
+
+        # Step 31 - Enter Billing Street
+        with allure.step("Enter billing street"):
+
+            print(f"[UI] Entering Billing Street: {client['billing_address']['street']}")
+
+            billing_street = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(0)'
+            )
+
+            assert billing_street.is_displayed(), \
+                "Billing street field not visible"
+
+            billing_street.click()
+            billing_street.clear()
+            billing_street.send_keys(client["billing_address"]["street"])
+
+            time.sleep(1)
+
+        # Step 32 - Enter Billing Apt/Suite
+        with allure.step("Enter billing apt/suite"):
+
+            print(f"[UI] Entering Billing Apt/Suite: {client['billing_address']['apt_suite']}")
+
+            billing_apt = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(1)'
+            )
+
+            assert billing_apt.is_displayed(), \
+                "Billing apt/suite field not visible"
+
+            billing_apt.click()
+            billing_apt.clear()
+            billing_apt.send_keys(client["billing_address"]["apt_suite"])
+
+            time.sleep(1)
+
+        # Step 33 - Enter Billing City
+        with allure.step("Enter billing city"):
+
+            print(f"[UI] Entering Billing City: {client['billing_address']['city']}")
+
+            billing_city = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(2)'
+            )
+
+            assert billing_city.is_displayed(), \
+                "Billing city field not visible"
+
+            billing_city.click()
+            billing_city.clear()
+            billing_city.send_keys(client["billing_address"]["city"])
+
+            time.sleep(1)
+
+        # Step 34 - Enter Billing State
+        with allure.step("Enter billing state"):
+
+            print(f"[UI] Entering Billing State: {client['billing_address']['state']}")
+
+            billing_state = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(3)'
+            )
+
+            assert billing_state.is_displayed(), \
+                "Billing state field not visible"
+
+            billing_state.click()
+            billing_state.clear()
+            billing_state.send_keys(client["billing_address"]["state"])
+
+            time.sleep(1)
+
+        # Step 35 - Enter Billing Postal Code
+        with allure.step("Enter billing postal code"):
+
+            print(f"[UI] Entering Billing Postal Code: {client['billing_address']['postal_code']}")
+
+            billing_postal = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(4)'
+            )
+
+            assert billing_postal.is_displayed(), \
+                "Billing postal code field not visible"
+
+            billing_postal.click()
+            billing_postal.clear()
+            billing_postal.send_keys(client["billing_address"]["postal_code"])
+
+            time.sleep(1)
+
+        # Step 36 - Select Billing Country
+        with allure.step("Select billing country"):
+
+            print(f"[UI] Opening Billing Country dropdown")
+
+            billing_country_dropdown = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.view.View").instance(20)'
+            )
+
+            assert billing_country_dropdown.is_displayed(), \
+                "Billing country dropdown not visible"
+
+            billing_country_dropdown.click()
+
+            time.sleep(2)
+
+            billing_country_search = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText")'
+            )
+
+            billing_country_search.send_keys(client["billing_address"]["country_search"])
+
+            time.sleep(1)
+
+            billing_country_option = driver.find_element(
+                AppiumBy.ACCESSIBILITY_ID,
+                client["billing_address"]["country"]
+            )
+
+            assert billing_country_option.is_displayed(), \
+                f"Billing country '{client['billing_address']['country']}' not visible"
+
+            billing_country_option.click()
+
+            print(f"[UI] Billing country set to '{client['billing_address']['country']}'")
+
+            time.sleep(1)
+
+        # ==================== SHIPPING ADDRESS TAB ====================
+
+        # Step 37 - Navigate to Shipping Address Tab
+        with allure.step("Navigate to Shipping Address Tab"):
+
+            print("[UI] Clicking Shipping Address Tab (Tab 6 of 6)")
+
+            shipping_tab = driver.find_element(
+                AppiumBy.XPATH,
+                '//android.view.View[@content-desc="Shipping Address\nTab 6 of 6"]'
+            )
+
+            assert shipping_tab.is_displayed(), \
+                "Shipping Address Tab not visible"
+
+            shipping_tab.click()
+
+            time.sleep(2)
+
+        # Step 38 - Enter Shipping Street
+        with allure.step("Enter shipping street"):
+
+            print(f"[UI] Entering Shipping Street: {client['shipping_address']['street']}")
+
+            shipping_street = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(0)'
+            )
+
+            assert shipping_street.is_displayed(), \
+                "Shipping street field not visible"
+
+            shipping_street.click()
+            shipping_street.clear()
+            shipping_street.send_keys(client["shipping_address"]["street"])
+
+            time.sleep(1)
+
+        # Step 39 - Enter Shipping Apt/Suite
+        with allure.step("Enter shipping apt/suite"):
+
+            print(f"[UI] Entering Shipping Apt/Suite: {client['shipping_address']['apt_suite']}")
+
+            shipping_apt = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(1)'
+            )
+
+            assert shipping_apt.is_displayed(), \
+                "Shipping apt/suite field not visible"
+
+            shipping_apt.click()
+            shipping_apt.clear()
+            shipping_apt.send_keys(client["shipping_address"]["apt_suite"])
+
+            time.sleep(1)
+
+        # Step 40 - Enter Shipping City
+        with allure.step("Enter shipping city"):
+
+            print(f"[UI] Entering Shipping City: {client['shipping_address']['city']}")
+
+            shipping_city = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(2)'
+            )
+
+            assert shipping_city.is_displayed(), \
+                "Shipping city field not visible"
+
+            shipping_city.click()
+            shipping_city.clear()
+            shipping_city.send_keys(client["shipping_address"]["city"])
+
+            time.sleep(1)
+
+        # Step 41 - Enter Shipping State
+        with allure.step("Enter shipping state"):
+
+            print(f"[UI] Entering Shipping State: {client['shipping_address']['state']}")
+
+            shipping_state = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(3)'
+            )
+
+            assert shipping_state.is_displayed(), \
+                "Shipping state field not visible"
+
+            shipping_state.click()
+            shipping_state.clear()
+            shipping_state.send_keys(client["shipping_address"]["state"])
+
+            time.sleep(1)
+
+        # Step 42 - Enter Shipping Postal Code
+        with allure.step("Enter shipping postal code"):
+
+            print(f"[UI] Entering Shipping Postal Code: {client['shipping_address']['postal_code']}")
+
+            shipping_postal = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText").instance(4)'
+            )
+
+            assert shipping_postal.is_displayed(), \
+                "Shipping postal code field not visible"
+
+            shipping_postal.click()
+            shipping_postal.clear()
+            shipping_postal.send_keys(client["shipping_address"]["postal_code"])
+
+            time.sleep(1)
+
+        # Step 43 - Select Shipping Country
+        with allure.step("Select shipping country"):
+
+            print(f"[UI] Opening Shipping Country dropdown")
+
+            shipping_country_dropdown = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.view.View").instance(20)'
+            )
+
+            assert shipping_country_dropdown.is_displayed(), \
+                "Shipping country dropdown not visible"
+
+            shipping_country_dropdown.click()
+
+            time.sleep(2)
+
+            shipping_country_search = driver.find_element(
+                AppiumBy.ANDROID_UIAUTOMATOR,
+                'new UiSelector().className("android.widget.EditText")'
+            )
+
+            shipping_country_search.send_keys(client["shipping_address"]["country_search"])
+
+            time.sleep(1)
+
+            shipping_country_option = driver.find_element(
+                AppiumBy.ACCESSIBILITY_ID,
+                client["shipping_address"]["country"]
+            )
+
+            assert shipping_country_option.is_displayed(), \
+                f"Shipping country '{client['shipping_address']['country']}' not visible"
+
+            shipping_country_option.click()
+
+            print(f"[UI] Shipping country set to '{client['shipping_address']['country']}'")
+
+            time.sleep(1)
+
+        # ==================== SAVE ====================
+
+        # Step 44 - Click Save
+        with allure.step("Save client"):
+
+            print("[UI] Looking for Save button")
+
+            save_button = driver.find_element(
+                AppiumBy.ACCESSIBILITY_ID,
+                "Save"
+            )
+
+            assert save_button.is_displayed(), \
+                "Save button not visible"
+
+            print("[UI] Clicking Save")
+
+            save_button.click()
+
+            print("[UI] Waiting for save operation to complete")
+
+            time.sleep(5)
+
+        # ==================== DATABASE VALIDATION ====================
+
+        # Step 45 - Validate in Database
+        with allure.step("Validate client in database"):
+
+            print("\n========== DATABASE VALIDATION STARTED ==========\n")
+
+            query = """
+                    SELECT
+                        c.id,
+                        c.name,
+                        c.id_number,
+                        c.vat_number,
+                        c.website,
+                        c.phone,
+                        c.public_notes,
+                        c.private_notes,
+                        c.address1              AS billing_street,
+                        c.address2              AS billing_apt,
+                        c.city                  AS billing_city,
+                        c.state                 AS billing_state,
+                        c.postal_code           AS billing_postal,
+                        co.name                 AS billing_country,
+                        c.shipping_address1     AS shipping_street,
+                        c.shipping_address2     AS shipping_apt,
+                        c.shipping_city         AS shipping_city,
+                        c.shipping_state        AS shipping_state,
+                        c.shipping_postal_code  AS shipping_postal,
+                        sc.name                 AS shipping_country
+                    FROM clients c
+                             LEFT JOIN countries co ON co.id = c.country_id
+                             LEFT JOIN countries sc ON sc.id = c.shipping_country_id
+                    WHERE c.name = %s
+                    ORDER BY c.id DESC
+                        LIMIT 1 \
+                    """
+
+            params = (client["name"],)
+
+            print(f"[DB] Executing Query:\n{query}")
+            print(f"[DB] Query Parameters: {params}")
+
+            result = db.fetch_one(query, params)
+
+            print(f"[DB] Raw Query Result: {result}")
+
+            assert result is not None, \
+                f"Client '{client['name']}' not found in database"
+
+            # Core fields
+            assert result["name"] == client["name"], \
+                f"Name mismatch: expected '{client['name']}', got '{result['name']}'"
+
+            assert result["id_number"] == client["id_number"], \
+                f"ID Number mismatch: expected '{client['id_number']}', got '{result['id_number']}'"
+
+            assert result["vat_number"] == client["vat_number"], \
+                f"VAT Number mismatch: expected '{client['vat_number']}', got '{result['vat_number']}'"
+
+            assert result["website"] == client["website"], \
+                f"Website mismatch: expected '{client['website']}', got '{result['website']}'"
+
+            assert result["phone"] == client["phone"], \
+                f"Phone mismatch: expected '{client['phone']}', got '{result['phone']}'"
+
+            # Notes
+            assert result["public_notes"] == client["notes"]["public_notes"], \
+                f"Public notes mismatch: expected '{client['notes']['public_notes']}', got '{result['public_notes']}'"
+
+            assert result["private_notes"] == client["notes"]["private_notes"], \
+                f"Private notes mismatch: expected '{client['notes']['private_notes']}', got '{result['private_notes']}'"
+
+            # Billing address
+            assert result["billing_street"] == client["billing_address"]["street"], \
+                f"Billing street mismatch"
+
+            assert result["billing_city"] == client["billing_address"]["city"], \
+                f"Billing city mismatch"
+
+            assert result["billing_state"] == client["billing_address"]["state"], \
+                f"Billing state mismatch"
+
+            assert result["billing_postal"] == client["billing_address"]["postal_code"], \
+                f"Billing postal code mismatch"
+
+            assert result["billing_country"] == client["billing_address"]["country"], \
+                f"Billing country mismatch"
+
+            # Shipping address
+            assert result["shipping_street"] == client["shipping_address"]["street"], \
+                f"Shipping street mismatch"
+
+            assert result["shipping_city"] == client["shipping_address"]["city"], \
+                f"Shipping city mismatch"
+
+            assert result["shipping_state"] == client["shipping_address"]["state"], \
+                f"Shipping state mismatch"
+
+            assert result["shipping_postal"] == client["shipping_address"]["postal_code"], \
+                f"Shipping postal code mismatch"
+
+            assert result["shipping_country"] == client["shipping_address"]["country"], \
+                f"Shipping country mismatch"
+
+            print(f"[DB] Client ID: {result['id']}")
+            print(f"[DB] All fields validated successfully")
+            print("\n========== DATABASE VALIDATION COMPLETED ==========\n")
+
+        print("========== CLIENT CREATION TEST COMPLETED ==========\n")

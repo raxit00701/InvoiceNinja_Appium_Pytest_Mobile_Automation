@@ -1,0 +1,11 @@
+2026-06-08 00:56:37 [[32mINFO[0m] conftest - Loading config: C:\Users\raxit\IdeaProjects\Invoice_ninja_appium_pytest\config\env\test.json
+2026-06-08 00:56:37 [[32mINFO[0m] utils.reporting_utils - Logging initialized: C:\Users\raxit\IdeaProjects\Invoice_ninja_appium_pytest\utils\..\reports\logs\test_20260608_005637.log
+2026-06-08 00:56:37 [[32mINFO[0m] utils.driver_factory - Connecting to Appium server: http://localhost:4723
+2026-06-08 00:56:43 [[32mINFO[0m] conftest - App loaded successfully.
+2026-06-08 00:56:43 [[32mINFO[0m] mysql.connector - package: mysql.connector.plugins
+2026-06-08 00:56:43 [[32mINFO[0m] mysql.connector - plugin_name: caching_sha2_password
+2026-06-08 00:56:43 [[32mINFO[0m] mysql.connector - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-08 00:56:43 [[32mINFO[0m] utils.db_utils - Connected to database.
+2026-06-08 00:57:57 [[32mINFO[0m] utils.db_utils - Disconnected from database.
+2026-06-08 00:57:57 [[32mINFO[0m] utils.driver_factory - Driver session terminated.
+2026-06-08 00:57:57 [[32mINFO[0m] conftest - Driver session terminated.

@@ -1,0 +1,16 @@
+2026-05-27 00:50:43 [[32mINFO[0m] conftest - Loading config: C:\Users\raxit\IdeaProjects\Invoice_ninja_appium_pytest\config\env\test.json
+2026-05-27 00:50:43 [[32mINFO[0m] utils.reporting_utils - Logging initialized: C:\Users\raxit\IdeaProjects\Invoice_ninja_appium_pytest\utils\..\reports\logs\test_20260527_005043.log
+2026-05-27 00:50:43 [[32mINFO[0m] utils.driver_factory - Connecting to Appium server: http://localhost:4723
+2026-05-27 00:50:48 [[32mINFO[0m] conftest - App loaded successfully.
+2026-05-27 00:50:49 [[32mINFO[0m] mysql.connector - package: mysql.connector.plugins
+2026-05-27 00:50:49 [[32mINFO[0m] mysql.connector - plugin_name: caching_sha2_password
+2026-05-27 00:50:49 [[32mINFO[0m] mysql.connector - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-05-27 00:50:49 [[32mINFO[0m] utils.db_utils - Connected to database.
+2026-05-27 00:50:49 [[32mINFO[0m] utils.reset_manager - Restarting app: com.invoiceninja.app
+2026-05-27 00:50:49 [[32mINFO[0m] utils.reset_manager - Waiting up to 30s for app to load...
+2026-05-27 00:50:49 [[32mINFO[0m] utils.reset_manager - App is ready.
+2026-05-27 00:50:50 [[32mINFO[0m] utils.reporting_utils - Screen recording started.
+2026-05-27 00:51:03 [[32mINFO[0m] conftest - Test failed — saving video: test_create_quote_and_db_validation[quote0]
+2026-05-27 00:51:04 [[32mINFO[0m] utils.reporting_utils - Video saved: C:\Users\raxit\IdeaProjects\Invoice_ninja_appium_pytest\utils\..\reports\videos\test_create_quote_and_db_validation[quote0]_20260527_005103.mp4
+2026-05-27 00:51:04 [[32mINFO[0m] utils.db_utils - Disconnected from database.
+2026-05-27 00:51:04 [[32mINFO[0m] utils.driver_factory - Driver session terminated.

@@ -1,0 +1,9 @@
+{
+  "login": [
+    {
+      "server_url": "https://bridged-preaching-unopened.ngrok-free.dev",
+      "email": "admin@example.com",
+      "password": "changeme!"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "purchase_orders": [
+    {
+      "vendor": "Global Freight Logistics 144606",
+      "user": "New User",
+      "due_date": "26/Jun/2026",
+      "discount": 0,
+      "shipping_cost": 0,
+      "design": "Plain",
+      "client": "Nova Digital Systems 774816",
+      "expense_account": "test",
+      "invoice_terms": "This is Invoice terms",
+      "invoice_footer": "This is Invoice Footer",
+      "public_notes": "This is Public notes",
+      "private_notes": "This is Private notes",
+      "expected_amount": "$19,485.00"
+    }
+  ]
+}

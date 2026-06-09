@@ -1,0 +1,16 @@
+{
+  "recurring_invoices": [
+    {
+      "client": "Nova Digital Systems 774816",
+      "po_number": "P0: 34567",
+      "discount": 5,
+      "design": "Elegant",
+      "vendor": "Global Freight Logistics",
+      "invoice_terms": "THIS IS INVOICE TERMS",
+      "invoice_footer": "THIS IS INVOICE FOOTER",
+      "public_notes": "THIS IS PUBLIC NOTES",
+      "private_notes": "THIS IS PRIVATE NOTES",
+      "expected_amount": "$18,510.75"
+    }
+  ]
+}

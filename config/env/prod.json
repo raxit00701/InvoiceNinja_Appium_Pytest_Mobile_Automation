@@ -1,0 +1,17 @@
+{
+  "appium_server": "http://localhost:4723",
+  "device_name": "prod-device:5554",
+  "app_package": "org.mifospay",
+  "app_activity": "org.mifospay.MainActivity",
+  "no_reset": true,
+  "full_reset": false,
+  "implicit_wait": 20,
+  "base_url": "https://mifospay.org",
+  "db_config": {
+    "host": "prod-db.internal",
+    "user": "prod_user",
+    "password": "prod_pass",
+    "database": "fineract_prod",
+    "port": 3306
+  }
+}

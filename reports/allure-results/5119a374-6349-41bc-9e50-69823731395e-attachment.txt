@@ -1,0 +1,39 @@
+2026-06-09 14:51:09 [[32mINFO[0m] conftest - Loading config: C:\Users\raxit\IdeaProjects\Invoice_ninja_appium_pytest\config\env\test.json
+2026-06-09 14:51:09 [[32mINFO[0m] utils.reporting_utils - Logging initialized: C:\Users\raxit\IdeaProjects\Invoice_ninja_appium_pytest\utils\..\reports\logs\test_20260609_145109.log
+2026-06-09 14:51:09 [[32mINFO[0m] utils.driver_factory - Headless mode enabled.
+2026-06-09 14:51:09 [[32mINFO[0m] utils.driver_factory - Connecting to Appium server: http://localhost:4723
+2026-06-09 14:51:15 [[32mINFO[0m] conftest - App loaded successfully.
+2026-06-09 14:51:15 [[32mINFO[0m] utils.reset_manager - Clearing app data: com.invoiceninja.app
+2026-06-09 14:51:17 [[32mINFO[0m] utils.reset_manager - Waiting up to 30s for app to load...
+2026-06-09 14:51:18 [[32mINFO[0m] utils.reset_manager - App is ready.
+2026-06-09 14:51:18 [[32mINFO[0m] utils.reset_manager - Waiting 5s for app stabilization...
+2026-06-09 14:51:23 [[32mINFO[0m] utils.reset_manager - App stabilization completed.
+2026-06-09 14:51:23 [[32mINFO[0m] api.login - [API] Attempting login for: admin@example.com
+2026-06-09 14:51:25 [[32mINFO[0m] api.login - [API] Successfully extracted auth token.
+2026-06-09 14:51:25 [[32mINFO[0m] api.login - [UI] Terminating app to inject token securely...
+2026-06-09 14:51:26 [[32mINFO[0m] api.login - [UI] Injecting token into SharedPreferences: FlutterSharedPreferences.xml
+2026-06-09 14:51:26 [[33mWARNING[0m] api.login - [UI] Could not inject via ADB shell (Is device rooted/emulator?): Message: Potentially insecure feature 'adb_shell' has not been enabled. If you want to enable this feature and accept the security ramifications, please do so by following the documented instructions at http://appium.io/docs/en/2.0/guides/security/
+Stacktrace:
+UnknownError: Potentially insecure feature 'adb_shell' has not been enabled. If you want to enable this feature and accept the security ramifications, please do so by following the documented instructions at http://appium.io/docs/en/2.0/guides/security/
+    at getResponseForW3CError (C:\Users\raxit\AppData\Roaming\npm\node_modules\appium\node_modules\@appium\base-driver\lib\protocol\errors.ts:1103:34)
+    at asyncHandler (C:\Users\raxit\AppData\Roaming\npm\node_modules\appium\node_modules\@appium\base-driver\lib\protocol\protocol.ts:507:57)
+The above error is caused by
+Error: Potentially insecure feature 'adb_shell' has not been enabled. If you want to enable this feature and accept the security ramifications, please do so by following the documented instructions at http://appium.io/docs/en/2.0/guides/security/
+    at AndroidUiautomator2Driver.assertFeatureEnabled (C:\Users\raxit\node_modules\appium-uiautomator2-driver\node_modules\@appium\base-driver\lib\basedriver\core.ts:313:13)
+    at AndroidUiautomator2Driver.mobileShell (C:\Users\raxit\node_modules\appium-uiautomator2-driver\node_modules\appium-android-driver\lib\commands\shell.ts:13:8)
+    at AndroidUiautomator2Driver.executeMethod (C:\Users\raxit\node_modules\appium-uiautomator2-driver\node_modules\@appium\base-driver\lib\basedriver\commands\execute.ts:61:26)
+    at AndroidUiautomator2Driver.execute (C:\Users\raxit\node_modules\appium-uiautomator2-driver\node_modules\appium-android-driver\lib\commands\execute.js:17:23)
+    at runCommandPromise (C:\Users\raxit\node_modules\appium-uiautomator2-driver\node_modules\@appium\base-driver\lib\basedriver\driver.ts:116:20)
+    at C:\Users\raxit\node_modules\appium-uiautomator2-driver\node_modules\async-lock\lib\index.js:171:12
+    at AsyncLock._promiseTry (C:\Users\raxit\node_modules\appium-uiautomator2-driver\node_modules\async-lock\lib\index.js:306:31)
+    at exec (C:\Users\raxit\node_modules\appium-uiautomator2-driver\node_modules\async-lock\lib\index.js:170:9)
+    at AsyncLock.acquire (C:\Users\raxit\node_modules\appium-uiautomator2-driver\node_modules\async-lock\lib\index.js:189:3)
+    at AndroidUiautomator2Driver.executeCommand (C:\Users\raxit\node_modules\appium-uiautomator2-driver\node_modules\@appium\base-driver\lib\basedriver\driver.ts:160:39)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at defaultBehavior (C:\Users\raxit\AppData\Roaming\npm\node_modules\appium\lib\appium.js:730:14)
+    at AppiumDriver.executeWrappedCommand (C:\Users\raxit\AppData\Roaming\npm\node_modules\appium\lib\appium.js:843:16)
+    at AppiumDriver.executeCommand (C:\Users\raxit\AppData\Roaming\npm\node_modules\appium\lib\appium.js:742:17)
+    at asyncHandler (C:\Users\raxit\AppData\Roaming\npm\node_modules\appium\node_modules\@appium\base-driver\lib\protocol\protocol.ts:409:19)
+2026-06-09 14:51:26 [[32mINFO[0m] api.login - [UI] Relaunching app. Should bypass login screen.
+2026-06-09 14:51:43 [[32mINFO[0m] utils.driver_factory - Driver session terminated.
+2026-06-09 14:51:43 [[32mINFO[0m] conftest - Driver session terminated.

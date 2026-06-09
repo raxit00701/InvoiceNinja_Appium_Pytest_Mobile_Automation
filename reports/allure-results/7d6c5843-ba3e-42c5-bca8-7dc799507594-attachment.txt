@@ -1,0 +1,10 @@
+2026-05-27 10:21:10 [[32mINFO[0m] conftest - Loading config: C:\Users\raxit\IdeaProjects\Invoice_ninja_appium_pytest\config\env\test.json
+2026-05-27 10:21:10 [[32mINFO[0m] utils.reporting_utils - Logging initialized: C:\Users\raxit\IdeaProjects\Invoice_ninja_appium_pytest\utils\..\reports\logs\test_20260527_102110.log
+2026-05-27 10:21:10 [[32mINFO[0m] utils.driver_factory - Connecting to Appium server: http://localhost:4723
+2026-05-27 10:21:16 [[32mINFO[0m] conftest - App loaded successfully.
+2026-05-27 10:21:16 [[32mINFO[0m] utils.reset_manager - Clearing app data: com.invoiceninja.app
+2026-05-27 10:21:17 [[32mINFO[0m] utils.reset_manager - Waiting up to 30s for app to load...
+2026-05-27 10:21:20 [[32mINFO[0m] utils.reset_manager - App is ready.
+2026-05-27 10:21:20 [[32mINFO[0m] utils.reset_manager - Waiting 5s for app stabilization...
+2026-05-27 10:21:25 [[32mINFO[0m] utils.reset_manager - App stabilization completed.
+2026-05-27 10:21:25 [[32mINFO[0m] utils.reporting_utils - Screen recording started.

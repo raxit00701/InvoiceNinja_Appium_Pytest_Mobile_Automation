@@ -1,0 +1,5 @@
+2026-05-27 09:30:23 [[32mINFO[0m] utils.db_utils - Connected to database.
+2026-05-27 09:30:23 [[32mINFO[0m] utils.reset_manager - Restarting app: com.invoiceninja.app
+2026-05-27 09:30:24 [[32mINFO[0m] utils.reset_manager - Waiting up to 30s for app to load...
+2026-05-27 09:30:25 [[32mINFO[0m] utils.reset_manager - App is ready.
+2026-05-27 09:30:26 [[32mINFO[0m] utils.reporting_utils - Screen recording started.

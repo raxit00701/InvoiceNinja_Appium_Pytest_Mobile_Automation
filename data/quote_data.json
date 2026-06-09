@@ -1,0 +1,18 @@
+{
+  "quotes": [
+    {
+      "company": "Nova Digital Systems 774816",
+      "user": "New User",
+      "quote_date": "24/June/2026",
+      "quantity": "5",
+      "department": "Design",
+      "category": "Business",
+      "logistics_company": "Global Freight Logistics",
+      "item_quantity": "1",
+      "note1": "Automation testing note 1",
+      "note2": "Automation testing note 2",
+      "note3": "Automation testing note 3",
+      "note4": "Automation testing note 4"
+    }
+  ]
+}

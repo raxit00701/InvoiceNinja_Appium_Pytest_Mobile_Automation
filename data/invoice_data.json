@@ -1,0 +1,18 @@
+{
+  "invoices": [
+    {
+      "client": "Nova Digital Systems 774816",
+      "invoice_date": "2026-06-09",
+      "partial_amount": 100,
+      "due_date": "2026-06-11",
+      "po_number": "PO: 435455",
+      "discount": 5,
+      "design": "Bold",
+      "vendor": "Global Freight Logistics",
+      "invoice_terms": "THIS IS INVOICE TERMS",
+      "invoice_footer": "THIS IS INVOICE FOOTER",
+      "public_notes": "THIS IS INVOICE PUBLIC NOTES",
+      "private_notes": "THIS IS INVOICE PRIVATE NOTES"
+    }
+  ]
+}

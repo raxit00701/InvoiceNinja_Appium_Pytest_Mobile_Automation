@@ -1,0 +1,19 @@
+{
+  "appium_server": "http://localhost:4723",
+  "device_name": "emulator-5554",
+  "app_package": "com.invoiceninja.app",
+  "app_activity": "com.invoiceninja.app.MainActivity",
+  "no_reset": true,
+  "full_reset": false,
+  "implicit_wait": 15,
+  "unicode_keyboard": true,
+  "reset_keyboard": true,
+  "base_url": "https://bridged-preaching-unopened.ngrok-free.dev",
+  "db_config": {
+    "host": "127.0.0.1",
+    "user": "ninja",
+    "password": "ninja",
+    "database": "ninja",
+    "port": 3307
+  }
+}

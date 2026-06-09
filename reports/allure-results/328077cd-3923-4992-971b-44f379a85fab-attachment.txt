@@ -1,0 +1,3 @@
+2026-06-04 00:28:01 [[32mINFO[0m] utils.db_utils - Disconnected from database.
+2026-06-04 00:28:01 [[32mINFO[0m] utils.driver_factory - Driver session terminated.
+2026-06-04 00:28:01 [[32mINFO[0m] conftest - Driver session terminated.

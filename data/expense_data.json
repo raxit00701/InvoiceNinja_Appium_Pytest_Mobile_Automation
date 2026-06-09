@@ -1,0 +1,13 @@
+{
+  "expenses": [
+    {
+      "customer": "Global Freight Logistics",
+      "project": "Nova Digital Systems 774816",
+      "expense_type": "test",
+      "category": "category test",
+      "amount": "10",
+      "notes": "this is for public notes",
+      "vendor_notes": "this is for private notes"
+    }
+  ]
+}

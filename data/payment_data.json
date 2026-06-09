@@ -1,0 +1,12 @@
+{
+  "payments": [
+    {
+      "client_name": "Nova Digital Systems 774816",
+      "payment_method": "American Express",
+      "transaction_ref": "TR: 65471",
+      "private_notes": "THIS IS PAYMENT PRIVATE NOTES",
+      "expected_amount": "Amount\n$18,510.75",
+      "expected_applied": "Applied\n$18,510.75"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "transactions": [
+    {
+      "client_name": "mike cooper",
+      "amount": 30,
+      "description": "this is for deposit transaction",
+      "transaction_type": "Deposit"
+    }
+  ]
+}

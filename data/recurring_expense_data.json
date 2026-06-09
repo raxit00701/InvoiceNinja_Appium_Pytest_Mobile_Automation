@@ -1,0 +1,14 @@
+{
+  "recurring_expenses": [
+    {
+      "customer": "Global Freight Logistics",
+      "vendor": "Nova Digital Systems 774816",
+      "expense_account": "test",
+      "category": "category test",
+      "user": "New User",
+      "amount": 10,
+      "public_note": "this is a public note",
+      "private_note": "this is a private note"
+    }
+  ]
+}

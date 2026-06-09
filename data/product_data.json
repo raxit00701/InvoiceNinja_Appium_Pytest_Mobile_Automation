@@ -1,0 +1,12 @@
+{
+  "product": [
+    {
+      "product_name": "iphone xl pro",
+      "description": "this is a phone that is build by apple",
+      "price": 1899,
+      "default_quantity": 30,
+      "max_quantity": 310,
+      "image_url": "https://apple.com/images/industrial-cargo-pallet.jpg"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "vendor": [
+    {
+      "name": "Global Freight Logistics 182715",
+      "id_number": "ID-182715",
+      "vat_number": "VAT-182715",
+      "website": "https://globalfreight182715.com",
+      "phone": "98765182715",
+      "contact_first_name": "Sam",
+      "contact_last_name": "Tester",
+      "contact_email": "sam182715@globalfreight.com",
+      "contact_phone": "90000182715",
+      "public_notes": "Preferred logistics vendor for international shipments",
+      "private_notes": "Handles fragile cargo with special packaging requirements",
+      "address1": "11th Street",
+      "address2": "Suite Homes",
+      "city": "New York",
+      "state": "NY",
+      "postal_code": "100001",
+      "country": "United States"
+    }
+  ]
+}
