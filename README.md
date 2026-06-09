@@ -262,8 +262,14 @@ assert float(result["price"]) == float(product["price"])
 assert int(result["max_quantity"]) == int(product["max_quantity"])
 assert result["image_url"] == product["image_url"]
 ```
+## ALLURE REPORT RESULTS
 
+<div align="center">
+  <img src="./Screenshot%202026-06-09%20201205.png" alt="Invoice Ninja Allure Report Dashboard" width="90%" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+</div>
 ---
+
+
 
 ## ⚠️ Known Bug — Recurring Invoice DB
 
