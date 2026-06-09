@@ -7,7 +7,7 @@
 <!-- BADGE ROW 1 — CORE STACK -->
 ![Python](https://img.shields.io/badge/Python-3.14.4-FF3B30?style=for-the-badge&logo=python&logoColor=white)
 &nbsp;
-![Appium](https://img.shields.io/badge/Appium-2.x-AF52DE?style=for-the-badge&logo=appium&logoColor=white)
+![Appium](https://img.shields.io/badge/Appium-3.1.0-AF52DE?style=for-the-badge&logo=appium&logoColor=white)
 &nbsp;
 ![Pytest](https://img.shields.io/badge/Pytest-8.2.0-FF9500?style=for-the-badge&logo=pytest&logoColor=white)
 &nbsp;
