@@ -456,7 +456,7 @@ pytest tests/test_db.py --env=test -s
 allure generate reports/allure-results -o reports/allure-report --clean
 allure open reports/allure-report
 ```
-## 3. Execution at Scale (Parallel)
+## Execution at Scale (Parallel)
 
 To run test cases in parallel mode and reduce overall execution time, you can use the `pytest-xdist` plugin.
 
