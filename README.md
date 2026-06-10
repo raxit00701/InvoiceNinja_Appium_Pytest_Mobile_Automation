@@ -456,6 +456,27 @@ pytest tests/test_db.py --env=test -s
 allure generate reports/allure-results -o reports/allure-report --clean
 allure open reports/allure-report
 ```
+## 3. Execution at Scale (Parallel)
+
+To run test cases in parallel mode and reduce overall execution time, you can use the `pytest-xdist` plugin.
+
+### Install `pytest-xdist`
+
+```bash
+pip install pytest-xdist
+```
+
+### Run Tests in Parallel
+
+Use the `-n` flag to specify the number of workers to execute tests concurrently.
+
+```bash
+pytest tests/ --env=test -n 2
+```
+
+The above command runs the test suite using **2 parallel workers**, allowing multiple test cases to execute simultaneously.
+
+> **Note:** For mobile automation, parallel execution requires **multiple Android devices or emulators**, with each device configured to use **unique Appium server ports and system ports** (for example, different `systemPort`, `mjpegServerPort`, and Appium server ports). Ensure that your `conftest.py` driver setup is **thread-safe** and correctly maps each test worker to its corresponding device configuration to avoid session conflicts.
 
 ---
 
